@@ -3,14 +3,14 @@
     <h2><i class="fa fa-users">Clients</i></h2>
   </div>
   <div class="col-md-6">
-    <h5 class="text-right text-secondary">Total owed: 0</h5>
+    <h5 class="text-right text-secondary">Total owed: {{totalOwned | currency: "USD"}}</h5>
   </div>
 </div>
 <table class="table mt-5" *ngIf="clients?.length > 0; else noClient">
   <thead>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Balance</th>
+    <th (click)="sortForName()">Name  <i class="fa fa-shield" [ngClass]="{'fa-rotate-180' :nameSort}"></i></th>
+    <th (click)="sortForEmail()">Email</th>
+    <th (click)="sortForBalance()">Balance</th>
     <th></th>
   </thead>
   <tbody>

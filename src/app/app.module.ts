@@ -21,6 +21,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AppRoutingModule } from './/app-routing.module';
 
 import {ClientService} from "./services/client.service";
+import {FormsModule} from "@angular/forms";
+import {FlashMessagesModule} from "angular2-flash-messages";
 
 
 @NgModule({
@@ -36,14 +38,16 @@ import {ClientService} from "./services/client.service";
     NotFoundComponent,
     RegisterComponent,
     SettingsComponent,
-    SidebarComponent
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FormsModule,
+    FlashMessagesModule.forRoot()
   ],
   providers: [ClientService],
   bootstrap: [AppComponent]

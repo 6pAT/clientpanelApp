@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {ClientService} from "../../services/client.service";
+import {Client} from "../../Models/Client";
+import {FlashMessagesService} from "angular2-flash-messages";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-client',
@@ -7,9 +11,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddClientComponent implements OnInit {
 
-  constructor() { }
+  client: Client = {
+    firstName:'',
+    lastName: '',
+    email: '',
+    phone: '',
+    balance: 0
+  }
+
+  disabledBalanceOnAdd: boolean = true;
+
+  @ViewChild("clientForm") form:any;
+
+  constructor(
+    private clientService: ClientService,
+    private flashMessageService: FlashMessagesService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    console.log(this.form);
+
+  }
+
+  onSubmit(){
+    if ( !this.form.valid ) {
+      this.flashMessageService.show("Please enter form",{
+        timeout: 4000,
+        cssClass: 'alert-danger'
+      });
+    }else{
+      //add new client
+      this.clientService.newClient(this.client);
+      //Show message success
+      this.flashMessageService.show('New client add success',{
+        cssClass: 'alert-success',
+        timeout: 4000
+      });
+      //Redirect
+      this.router.navigate(['/']);
+    }
   }
 
 }
