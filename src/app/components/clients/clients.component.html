@@ -8,7 +8,7 @@
 </div>
 <table class="table mt-5" *ngIf="clients?.length > 0; else noClient">
   <thead>
-    <th (click)="sortForName()">Name  <i class="fa fa-shield" [ngClass]="{'fa-rotate-180' :nameSort}"></i></th>
+    <th (click)="sortForName()">Name  <i class="fa fa-chevron-down" [ngClass]="{'fa-rotate-180' :nameSort}"></i></th>
     <th (click)="sortForEmail()">Email</th>
     <th (click)="sortForBalance()">Balance</th>
     <th></th>
@@ -27,6 +27,6 @@
 
 <ng-template #noClient>
   <div class="alert-info alert mt-5">
-    There are no clients in the system dsada
+    There are no clients in the system
   </div>
 </ng-template>
