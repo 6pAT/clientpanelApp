@@ -15,6 +15,7 @@ export class EditClientComponent implements OnInit {
   id:string;
   client: Client;
   disabledBalanceOnAdd: boolean;
+  maskPhone = ['+', '3', '8', '(', /\d/, /\d/, /\d/, ')', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/];
   @ViewChild('clientForm') form: any;
 
   constructor(
@@ -49,7 +50,7 @@ export class EditClientComponent implements OnInit {
         timeout: 4000
       });
 
-      this.router.navigate([`/client${this.id}`]);
+      this.router.navigate([`/client/${this.id}`]);
     }
   }
 

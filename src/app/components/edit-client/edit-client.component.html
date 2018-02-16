@@ -72,21 +72,24 @@
       <!--Phone-->
       <div class="form-group">
         <label for="phone">Phone</label>
-        <input type="phone"
-               class="form-control"
+        <input type="text"
                name="phone"
+               id="phone"
+               class="form-control"
                [ngClass]="{'is-invalid': clientPhone.errors && clientPhone.touched}"
                [(ngModel)]="client.phone"
+               [textMask]="{mask: maskPhone}"
+               placeholder="+380(XXX)XXX-XX-XX"
+               pattern="^\+\d{2}\(\d{3}\)\d{3}-\d{2}-\d{2}$"
                #clientPhone="ngModel"
-               minlength="10"
-               id="phone"
                required
         >
+
         <div class="invalid-feedback" [hidden]="!clientPhone.errors?.required">
           Phone required
         </div>
-        <div class="invalid-feedback" [hidden]="!clientPhone.errors?.minlength">
-          Must be at least 10 characters
+        <div class="invalid-feedback" [hidden]="!clientPhone.errors?.pattern">
+          There are not enough digits
         </div>
       </div>
       <!--Balance-->

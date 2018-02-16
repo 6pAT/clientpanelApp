@@ -25,6 +25,7 @@ import {FormsModule} from "@angular/forms";
 import {FlashMessagesModule} from "angular2-flash-messages";
 import {AuthService} from "./services/auth.service";
 import {SettingsService} from "./services/settings.service";
+import {TextMaskModule} from "angular2-text-mask";
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import {SettingsService} from "./services/settings.service";
     AngularFirestoreModule,
     AngularFireAuthModule,
     FormsModule,
-    FlashMessagesModule.forRoot()
+    FlashMessagesModule.forRoot(),
+    TextMaskModule
   ],
   providers: [ClientService, AuthService, SettingsService],
   bootstrap: [AppComponent]

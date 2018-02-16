@@ -8,10 +8,12 @@
 </div>
 <table class="table mt-5" *ngIf="clients?.length > 0; else noClient">
   <thead>
-    <th (click)="sortForName()">Name  <i class="fa fa-chevron-down" [ngClass]="{'fa-rotate-180' :nameSort}"></i></th>
-    <th (click)="sortForEmail()">Email</th>
-    <th (click)="sortForBalance()">Balance</th>
-    <th></th>
+    <tr>
+      <th (click)="sortForName()">Name  <i class="fa fa-chevron-down" [ngClass]="{'fa-rotate-180' :nameSort}"></i></th>
+      <th (click)="sortForEmail()">Email</th>
+      <th (click)="sortForBalance()">Balance</th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     <tr *ngFor="let client of clients">

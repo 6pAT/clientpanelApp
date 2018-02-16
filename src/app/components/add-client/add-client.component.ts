@@ -13,40 +13,39 @@ import {SettingsService} from "../../services/settings.service";
 export class AddClientComponent implements OnInit {
 
   client: Client = {
-    firstName:'',
+    firstName: '',
     lastName: '',
     email: '',
     phone: '',
     balance: 0
-  }
-
+  };
+  maskPhone = ['+', '3', '8', '(', /\d/, /\d/, /\d/, ')', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/];
   disabledBalanceOnAdd: boolean;
 
-  @ViewChild("clientForm") form:any;  //достаем из ./add-client.component.html нашу форму
+  @ViewChild("clientForm") form: any;  //достаем из ./add-client.component.html нашу форму
 
-  constructor(
-    private clientService: ClientService,
-    private flashMessageService: FlashMessagesService,
-    private router: Router,
-    private settingService: SettingsService
-  ) { }
+  constructor(private clientService: ClientService,
+              private flashMessageService: FlashMessagesService,
+              private router: Router,
+              private settingService: SettingsService) {
+  }
 
   ngOnInit() {
     this.disabledBalanceOnAdd = this.settingService.getSettings().disableBalanceOnAdd; //todo: 27:49
 
   }
 
-  onSubmit(){
-    if ( !this.form.valid ) {
-      this.flashMessageService.show("Please enter form",{
+  onSubmit() {
+    if (!this.form.valid) {
+      this.flashMessageService.show("Please enter form", {
         timeout: 4000,
         cssClass: 'alert-danger'
       });
-    }else{
+    } else {
       //add new client
       this.clientService.newClient(this.client);
       //Show message success
-      this.flashMessageService.show('New client add success',{
+      this.flashMessageService.show('New client add success', {
         cssClass: 'alert-success',
         timeout: 4000
       });
