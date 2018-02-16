@@ -1,3 +1,48 @@
-<p>
-  register works!
-</p>
+<div class="row">
+  <div class="col-md-6 mx-auto">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="text-center mb-4 mt-4">
+          <span class="text-primary"><i class="fa fa-lock"></i>Client Panel</span> Sign Up
+        </h1>
+      </div>
+      <form (ngSubmit)="onSubmit()">
+        <!--Email-->
+        <div class="form-group mx-3">
+          <label for="email">Email</label>
+          <input type="email"
+                 class="form-control"
+                 name="clientEmail"
+                 id="email"
+                 [(ngModel)]="email"
+                 #emailValue="ngModel"
+                 [ngClass]="{'is-invalid': emailValue.errors && emailValue.touched}"
+                 pattern="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$"
+                 required
+          >
+          <div *ngIf="emailValue.touched && emailValue.errors" class="alert alert-danger">
+            example@domain.com
+          </div>
+        </div>
+        <!--Password-->
+        <div class="form-group mx-3">
+          <label for="password">Password</label>
+          <input type="password"
+                 class="form-control"
+                 name="password"
+                 id="password"
+                 [(ngModel)]="password"
+                 #passwordValue="ngModel"
+                 [ngClass]="{'is-invalid': passwordValue.errors && passwordValue.touched}"
+                 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+                 required>
+        </div>
+        <div *ngIf="passwordValue.touched && passwordValue.errors" class="alert alert-danger">
+          Minimum eight characters, at least one uppercase letter, one lowercase letter and one number
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Sing Up</button>
+      </form>
+    </div>
+  </div>
+</div>

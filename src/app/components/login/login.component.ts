@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {FlashMessagesService} from "angular2-flash-messages";
 import {Router} from "@angular/router";
@@ -9,10 +9,11 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+//todo: почистить от console.log и убрать с login.html  (and Cl13ntPan3l)
   email: string;
   password: string;
 
+  @ViewChild('clientEmail') clientEmail:any;
   constructor(private authService: AuthService,
               private flashMessage: FlashMessagesService,
               private router:Router) { }
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
       if (auth) {
         this.router.navigate(['/']);
       }
-    })
+    });
+    console.log(this.clientEmail);
   }
 
   onSubmit(){
@@ -39,5 +41,6 @@ export class LoginComponent implements OnInit {
         console.log(err);
       })
   }
+
 
 }

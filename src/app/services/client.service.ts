@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from "angularfire2/firestore";
+import {AngularFireAuth} from "angularfire2/auth";
 import { Observable } from "rxjs/Observable";
 //Models
 import { Client } from "../Models/Client";
@@ -9,8 +10,16 @@ export class ClientService {
   clientDoc: AngularFirestoreDocument<Client>;
   clients: Observable<Client[]>;
   client:Observable<Client>;
-  constructor(private afs:AngularFirestore) {
+
+  authState: any = null;
+
+  constructor(private afs:AngularFirestore,
+              private afAuth:AngularFireAuth) {
     this.clientsCollection = this.afs.collection('clients', ref => ref.orderBy('balance'));
+
+    this.afAuth.authState.subscribe((auth) => {
+      this.authState = auth
+    });
   }
 
   getClients(): Observable<Client[]>{
@@ -52,4 +61,7 @@ export class ClientService {
     this.clientDoc = this.afs.doc(`clients/${client.id}`);
     this.clientDoc.update(client);
   }
+
+
+
 }

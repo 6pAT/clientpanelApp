@@ -3,6 +3,7 @@ import {ClientService} from "../../services/client.service";
 import {Client} from "../../Models/Client";
 import {FlashMessagesService} from "angular2-flash-messages";
 import {Router} from "@angular/router";
+import {SettingsService} from "../../services/settings.service";
 
 @Component({
   selector: 'app-add-client',
@@ -19,18 +20,19 @@ export class AddClientComponent implements OnInit {
     balance: 0
   }
 
-  disabledBalanceOnAdd: boolean = true;
+  disabledBalanceOnAdd: boolean;
 
-  @ViewChild("clientForm") form:any;
+  @ViewChild("clientForm") form:any;  //достаем из ./add-client.component.html нашу форму
 
   constructor(
     private clientService: ClientService,
     private flashMessageService: FlashMessagesService,
-    private router: Router
+    private router: Router,
+    private settingService: SettingsService
   ) { }
 
   ngOnInit() {
-    console.log(this.form);
+    this.disabledBalanceOnAdd = this.settingService.getSettings().disableBalanceOnAdd; //todo: 27:49
 
   }
 

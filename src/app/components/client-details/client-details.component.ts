@@ -39,7 +39,7 @@ export class ClientDetailsComponent implements OnInit {
   updateBalance() {
     this.clientServise.updateClient(this.client);
     this.flashMessageS.show('Balance updated', {
-      cssClass: 'alet-success', timeout: 4000
+      cssClass: 'alert-success', timeout: 4000
     });
     this.showBalanceUpdateInput = false;
   }
@@ -48,7 +48,7 @@ export class ClientDetailsComponent implements OnInit {
     if (confirm('Are you sure?')) {
       this.clientServise.deleteClient(this.client);
       this.flashMessageS.show('Client removed', {
-        cssClass: 'alet-success', timeout: 4000
+        cssClass: 'alert-success', timeout: 4000
       });
       this.router.navigate(['/']);
     }
