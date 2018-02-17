@@ -1,0 +1,15 @@
+thead th {
+  cursor: pointer;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+
+.active span{
+  visibility: visible;
+}
+
+span{
+  visibility: hidden;
+}
+

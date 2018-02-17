@@ -26,6 +26,7 @@ import {FlashMessagesModule} from "angular2-flash-messages";
 import {AuthService} from "./services/auth.service";
 import {SettingsService} from "./services/settings.service";
 import {TextMaskModule} from "angular2-text-mask";
+import {OrderModule} from "ngx-order-pipe";
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import {TextMaskModule} from "angular2-text-mask";
     AngularFireAuthModule,
     FormsModule,
     FlashMessagesModule.forRoot(),
-    TextMaskModule
+    TextMaskModule,
+    OrderModule
   ],
   providers: [ClientService, AuthService, SettingsService],
   bootstrap: [AppComponent]

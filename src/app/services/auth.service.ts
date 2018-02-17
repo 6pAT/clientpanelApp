@@ -1,17 +1,20 @@
 import {Injectable} from '@angular/core';
 import {AngularFireAuth} from "angularfire2/auth";
-
+import {Router} from "@angular/router";
+import {FlashMessagesService} from "angular2-flash-messages";
 
 @Injectable()
 export class AuthService {
 
-  constructor(private afAuth: AngularFireAuth) {
+  constructor(private afAuth: AngularFireAuth,
+              private router: Router,
+              private flashMessageS: FlashMessagesService) {
   }
 
   login(email: string, password: string) {
-    return new Promise((resolce, reject) => {
+    return new Promise((resolve, reject) => {
       this.afAuth.auth.signInWithEmailAndPassword(email, password)
-        .then(userData => resolce(userData))
+        .then(userData => resolve(userData))
         .catch(err => reject(err));
     });
   }
@@ -25,10 +28,18 @@ export class AuthService {
   }
 
   getAuth() {
-    return this.afAuth.authState.map(auth=> auth);
+    return this.afAuth.authState.map(auth => auth);
   }
 
   logout() {
-    this.afAuth.auth.signOut();
+    this.afAuth.auth.signOut()
+      .then(value => {
+        this.flashMessageS.show(`You are now logged out`, {
+          cssClass: 'alert-success', timeout: 50000
+        });
+      })
+      .catch(reason => {
+        this.flashMessageS.show(`${reason}`);
+      });
   }
 }
