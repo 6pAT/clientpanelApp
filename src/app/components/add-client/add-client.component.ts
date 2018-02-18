@@ -31,8 +31,7 @@ export class AddClientComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.disabledBalanceOnAdd = this.settingService.getSettings().disableBalanceOnAdd; //todo: 27:49
-
+    this.disabledBalanceOnAdd = this.settingService.getSettings().disableBalanceOnAdd;
   }
 
   onSubmit() {
@@ -42,16 +41,8 @@ export class AddClientComponent implements OnInit {
         cssClass: 'alert-danger'
       });
     } else {
-      //add new client
       this.clientService.newClient(this.client);
-      //Show message success
-      this.flashMessageService.show('New client add success', {
-        cssClass: 'alert-success',
-        timeout: 4000
-      });
-      //Redirect
       this.router.navigate(['/']);
     }
   }
-
 }

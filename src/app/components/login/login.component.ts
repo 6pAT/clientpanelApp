@@ -9,37 +9,38 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-//todo: почистить от console.log и убрать с login.html  (and Cl13ntPan3l)
+
   email: string;
   password: string;
 
-  @ViewChild('clientEmail') clientEmail:any;
+  @ViewChild('clientEmail') clientEmail: any;
+
   constructor(private authService: AuthService,
               private flashMessage: FlashMessagesService,
-              private router:Router) { }
+              private router: Router) {
+  }
 
   ngOnInit() {
-    this.authService.getAuth().subscribe( auth=>{
+    this.authService.getAuth().subscribe(auth => {
       if (auth) {
         this.router.navigate(['/']);
       }
     });
-    console.log(this.clientEmail);
+    console.log("Cl13ntPan3l");
   }
 
-  onSubmit(){
+  onSubmit() {
     this.authService.login(this.email, this.password)
       .then(res => {
         this.flashMessage.show('You are now logged in',
-          { cssClass: 'alert-success', timeout: 4000});
-        console.log(res);
+          {cssClass: 'alert-success', timeout: 4000});
         this.router.navigate(['/']);
       })
-      .catch(err=>{
+      .catch(err => {
         this.flashMessage.show(err.message,
-          { cssClass: 'alert-danger', timeout: 4000});
+          {cssClass: 'alert-danger', timeout: 4000});
         console.log(err);
-      })
+      });
   }
 
 

@@ -13,7 +13,7 @@ export class ClientsComponent implements OnInit {
   clients: Client[];
   totalOwned: number;
 
-  order: string = 'name';
+  order: string = 'firstName';
   reverse: boolean = false;
 
   constructor(private  clientService: ClientService) {  }
@@ -35,6 +35,6 @@ export class ClientsComponent implements OnInit {
   getTotalOwned(): number {
     return this.clients.reduce((total, client) => {
       return total += client.balance;
-    }, 0)
+    }, 0);
   }
 }

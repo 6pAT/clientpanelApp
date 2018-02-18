@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {FlashMessagesService} from "angular2-flash-messages";
 import {Router} from "@angular/router";
@@ -10,32 +10,31 @@ import {Router} from "@angular/router";
 })
 export class RegisterComponent implements OnInit {
 
-  email:string;
-  password:string;
+  email: string;
+  password: string;
 
   constructor(private authService: AuthService,
-              private flashMessage:FlashMessagesService,
-              private router:Router) { }
+              private flashMessage: FlashMessagesService,
+              private router: Router) {
+  }
 
   ngOnInit() {
-    this.authService.getAuth().subscribe( auth=>{
+    this.authService.getAuth().subscribe(auth => {
       if (auth) {
         this.router.navigate(['/']);
       }
     });
   }
 
-  onSubmit(){
-    this.authService.register(this.email, this.password).
-    then(res => {
+  onSubmit() {
+    this.authService.register(this.email, this.password).then(res => {
       this.flashMessage.show('Registration was success',
-        { cssClass: 'alert-success', timeout: 4000});
+        {cssClass: 'alert-success', timeout: 4000});
       this.router.navigate(['/']);
     })
-      .catch(err=>{
+      .catch(err => {
         this.flashMessage.show(err.message,
-          { cssClass: 'alert-danger', timeout: 4000});
-        console.log(err);
+          {cssClass: 'alert-danger', timeout: 4000});
       });
   }
 }

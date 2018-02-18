@@ -12,43 +12,38 @@ import {SettingsService} from "../../services/settings.service";
 })
 export class EditClientComponent implements OnInit {
 
-  id:string;
+  id: string;
   client: Client;
-  disabledBalanceOnAdd: boolean;
+  disableBalanceOnEdit: boolean;
   maskPhone = ['+', '3', '8', '(', /\d/, /\d/, /\d/, ')', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/];
   @ViewChild('clientForm') form: any;
 
-  constructor(
-    private route: ActivatedRoute,
-    private clientService: ClientService,
-    private flashMessageS: FlashMessagesService,
-    private router: Router,
-    private settingService: SettingsService) { }
+  constructor(private route: ActivatedRoute,
+              private clientService: ClientService,
+              private flashMessageS: FlashMessagesService,
+              private router: Router,
+              private settingService: SettingsService) {
+  }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-    this.clientService.getClient(this.id).subscribe((client)=>{
+    this.clientService.getClient(this.id).subscribe((client) => {
       this.client = client;
     }, error2 => {
       this.flashMessageS.show(error2);
     });
 
-    this.disabledBalanceOnAdd = this.settingService.getSettings().disableBalanceOnAdd;
+    this.disableBalanceOnEdit = this.settingService.getSettings().disableBalanceOnEdit;
   }
 
-  onSubmit(){
-    if ( !this.form.valid ) {
-      this.flashMessageS.show("Please enter form",{
+  onSubmit() {
+    if (!this.form.valid) {
+      this.flashMessageS.show("Please enter form", {
         timeout: 4000,
         cssClass: 'alert-danger'
       });
-    }else{
+    } else {
       this.clientService.updateClient(this.client);
-
-      this.flashMessageS.show('Client editing was successful, но как по мне это нудно писать после ответа от сервера ... :)',{
-        cssClass: 'alert-success',
-        timeout: 4000
-      });
 
       this.router.navigate([`/client/${this.id}`]);
     }

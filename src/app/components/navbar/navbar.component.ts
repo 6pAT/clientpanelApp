@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
-import {FlashMessagesService} from "angular2-flash-messages";
 import {SettingsService} from "../../services/settings.service";
 
 
@@ -18,16 +17,15 @@ export class NavbarComponent implements OnInit {
 
   constructor(private authServive: AuthService,
               private router: Router,
-              private flashMessage: FlashMessagesService,
               private settingsService: SettingsService) {
   }
 
   ngOnInit() {
-    this.authServive.getAuth().subscribe( auth=> {
+    this.authServive.getAuth().subscribe(auth => {
       if (auth) {
         this.isLoggedIn = true;
         this.loggedInUser = auth.email;
-      }else {
+      } else {
         this.isLoggedIn = false;
       }
     });
@@ -38,6 +36,5 @@ export class NavbarComponent implements OnInit {
     this.authServive.logout();
 
     this.router.navigate(['/login']);
-
   }
 }
