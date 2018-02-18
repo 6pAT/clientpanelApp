@@ -1,13 +1,11 @@
 import {Injectable} from '@angular/core';
 import {AngularFireAuth} from "angularfire2/auth";
-import {Router} from "@angular/router";
 import {FlashMessagesService} from "angular2-flash-messages";
 
 @Injectable()
 export class AuthService {
 
   constructor(private afAuth: AngularFireAuth,
-              private router: Router,
               private flashMessageS: FlashMessagesService) {
   }
 

@@ -7,7 +7,7 @@ export class SettingsService {
   settings: Settings = {
     allowRegistration: true,
     disableBalanceOnAdd: true,
-    disableBalanceOnEdit: true,
+    disableBalanceOnEdit: true
   };
 
   constructor() {
@@ -16,7 +16,7 @@ export class SettingsService {
     }
   }
 
-  getSettings():Settings{
+  getSettings(): Settings {
     return this.settings;
   }
 

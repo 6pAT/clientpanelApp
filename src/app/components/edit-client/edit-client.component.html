@@ -8,7 +8,7 @@
     Edit client
   </div>
   <div class="card-body">
-    <form #clientForm="ngForm" (ngSubmit)="onSubmit(clientForm)">
+    <form #clientForm="ngForm" (ngSubmit)="onSubmit(clientForm)" *ngIf="client?.firstName !== undefined;else noClient">
       <!--FirstName-->
       <div class="form-group">
         <label for="firstName">First Name</label>
@@ -108,5 +108,8 @@
 
       <button type="submit" class="btn btn-primary btn-block">Edit</button>
     </form>
+    <ng-template #noClient>
+      <div> Loading ... </div>
+    </ng-template>
   </div>
 </div>
