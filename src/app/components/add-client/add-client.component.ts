@@ -34,7 +34,7 @@ export class AddClientComponent implements OnInit {
     this.disabledBalanceOnAdd = this.settingService.getSettings().disableBalanceOnAdd;
   }
 
-  onSubmit() {
+  onSubmit(clientForm) {
     if (!this.form.valid) {
       this.flashMessageService.show("Please enter form", {
         timeout: 4000,

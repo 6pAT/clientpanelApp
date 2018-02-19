@@ -27,6 +27,7 @@ import {AuthService} from "./services/auth.service";
 import {SettingsService} from "./services/settings.service";
 import {TextMaskModule} from "angular2-text-mask";
 import {OrderModule} from "ngx-order-pipe";
+import {FilterForNamePipe} from "./pipes/filter-for-name.pipe";
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import {OrderModule} from "ngx-order-pipe";
     RegisterComponent,
     SettingsComponent,
     SidebarComponent,
+    FilterForNamePipe
   ],
   imports: [
     BrowserModule,
