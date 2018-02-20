@@ -29,7 +29,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let client of clients | orderBy: order:reverse:'case-insensitive'">
+  <tr [@myAnimation]="'in'" *ngFor="let client of clients | orderBy: order:reverse:'case-insensitive'">
     <td>{{ client.firstName }} {{ client.lastName}}</td>
     <td>{{ client.email}}</td>
     <td>{{ client.balance}}</td>

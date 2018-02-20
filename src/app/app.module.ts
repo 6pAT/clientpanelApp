@@ -28,6 +28,7 @@ import {SettingsService} from "./services/settings.service";
 import {TextMaskModule} from "angular2-text-mask";
 import {OrderModule} from "ngx-order-pipe";
 import {FilterForNamePipe} from "./pipes/filter-for-name.pipe";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import {FilterForNamePipe} from "./pipes/filter-for-name.pipe";
     FormsModule,
     FlashMessagesModule.forRoot(),
     TextMaskModule,
-    OrderModule
+    OrderModule,
+    BrowserAnimationsModule
   ],
   providers: [ClientService, AuthService, SettingsService],
   bootstrap: [AppComponent]
